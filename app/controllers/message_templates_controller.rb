@@ -16,27 +16,31 @@ class MessageTemplatesController < ApplicationController
   end
 
   def create
-    @message_template = MessageTemplate.new(message_template_params)
+    result = MessageTemplates::Create.new(message_template_params).call
 
     respond_to do |format|
-      if @message_template.save
-        format.html { redirect_to @message_template, notice: 'Message template was successfully created.' }
-        format.json { render :show, status: :created, location: @message_template }
+      if result.success?
+        format.html { redirect_to result.success, notice: 'Message template was successfully created.' }
+        format.json { render :show, status: :created, location: result.success }
       else
+        @errors = result.failure.errors
         format.html { render :new }
-        format.json { render json: @message_template.errors, status: :unprocessable_entity }
+        format.json { render json: result.failure.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
+    result = MessageTemplates::Update.new(@message_template, message_template_params).call
+
     respond_to do |format|
-      if @message_template.update(message_template_params)
-        format.html { redirect_to @message_template, notice: 'Message template was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message_template }
+      if result.success?
+        format.html { redirect_to result.success, notice: 'Message template was successfully updated.' }
+        format.json { render :show, status: :ok, location: result.success }
       else
+        @errors = result.failure.errors
         format.html { render :edit }
-        format.json { render json: @message_template.errors, status: :unprocessable_entity }
+        format.json { render json: result.failure.errors, status: :unprocessable_entity }
       end
     end
   end

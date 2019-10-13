@@ -30,4 +30,25 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      user: User
+      message_template: Message Template
+      message: Message
+    attributes:
+      message:
+        scheduled_send_at: Scheduled send at
+        sent_at: Scheduled send at
+      message_template:
+        title: Title
+        body: Body
+      user:
+        name: Name
+  dry_validation:
+    errors:
+      rules:
+        body:
+          disallowed_values: 'contains values not allowed for interpolation'
+        title:
+          not_unique: 'is not unique'
+          too_short: 'is too short'
