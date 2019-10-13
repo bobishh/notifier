@@ -12,16 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2019_10_11_122022) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "message_templates", force: :cascade do |t|
-    t.text "body"
-    t.string "title"
+    t.text "body", null: false
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_message_templates_on_title"
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "message_template_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "message_template_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "scheduled_send_at"
+    t.datetime "sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_template_id"], name: "index_messages_on_message_template_id"
@@ -29,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_10_11_122022) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
