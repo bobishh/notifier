@@ -23,5 +23,4 @@ test:
   database: notifier_test
 
 production:
-  <<: *default
-  database: notifier
+  url: <%= ENV.fetch('DATABASE_URL') %>
