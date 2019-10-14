@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @message.user.name %>
+</p>
+
+<p>
+  <strong>Message body:</strong>
+  <%= @message.render_body %>
+</p>
+
+<p>
+  <strong>Scheduled send at:</strong>
+  <%= @message.scheduled_send_at %>
+</p>
+
+<p>
+  <strong>Sent at:</strong>
+  <%= @message.sent_at %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

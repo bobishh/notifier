@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe MessageTemplatesController, type: :controller do
   let(:valid_attributes) do
@@ -7,7 +7,7 @@ RSpec.describe MessageTemplatesController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    { body: " " }
+    { body: " ", title: '' }
   end
 
   let(:valid_session) { {} }
@@ -38,7 +38,7 @@ RSpec.describe MessageTemplatesController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       message_template = MessageTemplate.create! valid_attributes
-      get :edit, params: {id: message_template.to_param}, session: valid_session
+      get :edit, params: { id: message_template.to_param }, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -67,15 +67,16 @@ RSpec.describe MessageTemplatesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) do
+        { body: "Valid body %{user.name}",
+          title: "Valid template" }
+      end
 
       it "updates the requested message_template" do
         message_template = MessageTemplate.create! valid_attributes
         put :update, params: {id: message_template.to_param, message_template: new_attributes}, session: valid_session
         message_template.reload
-        skip("Add assertions for updated state")
+        expect(message_template.title).to eq(new_attributes[:title])
       end
 
       it "redirects to the message_template" do

@@ -8,8 +8,10 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <%= link_to 'Messages', messages_path %>
+    <%= link_to 'Message Templates', message_templates_path %>
+
     <%= yield %>
   </body>
 </html>
