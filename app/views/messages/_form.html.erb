@@ -21,7 +21,7 @@
   <div class="field">
     <%= form.label :message_template_id %>
     <%= form.select :message_template_id  do %>
-      <%= options_for_select(MessageTemplate.pluck(:title, :id)) %>
+      <%= options_for_select(MessageTemplate.active.pluck(:title, :id)) %>
     <% end %>
   </div>
 

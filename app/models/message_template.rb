@@ -1,4 +1,7 @@
 class MessageTemplate < ApplicationRecord
+  has_many :messages, dependent: :restrict_with_error
+  scope :active, -> { where(archieved_at: nil) }
+
   INTERPOLATION_REGEXP = /%{([\w.0-9]+)}/
 
   class << self
@@ -11,6 +14,10 @@ class MessageTemplate < ApplicationRecord
   validates :title, presence: true, length: { minimum: 3 }
   validates :body, presence: true
   validate  :validate_body
+
+  def archive
+    update(archieved_at: Time.now)
+  end
 
   private
 

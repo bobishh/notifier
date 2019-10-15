@@ -18,7 +18,7 @@
         <td><%= message_template.title %></td>
         <td><%= link_to 'Show', message_template %></td>
         <td><%= link_to 'Edit', edit_message_template_path(message_template) %></td>
-        <td><%= link_to 'Destroy', message_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Archive', message_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

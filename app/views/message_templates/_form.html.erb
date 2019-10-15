@@ -21,6 +21,13 @@
     <%= form.text_field :title %>
   </div>
 
+  <p>
+    You can use these values for interpolation (use %{}, i.e %{user.name}):
+    <i>
+      <%= MessageTemplate.allowed_for_interpolation.join(", ") %>
+    </i>
+  </p>
+
   <div class="actions">
     <%= form.submit %>
   </div>

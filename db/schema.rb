@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_141111) do
+ActiveRecord::Schema.define(version: 2019_10_15_144244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_141111) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "archieved_at"
     t.index ["title"], name: "index_message_templates_on_title", unique: true
   end
 
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_141111) do
     t.datetime "sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "body"
     t.index ["message_template_id"], name: "index_messages_on_message_template_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

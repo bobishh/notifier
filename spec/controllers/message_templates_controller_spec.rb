@@ -100,7 +100,7 @@ RSpec.describe MessageTemplatesController, type: :controller do
       message_template = MessageTemplate.create! valid_attributes
       expect {
         delete :destroy, params: {id: message_template.to_param}, session: valid_session
-      }.to change(MessageTemplate, :count).by(-1)
+      }.to change(MessageTemplate.active, :count).by(-1)
     end
 
     it "redirects to the message_templates list" do

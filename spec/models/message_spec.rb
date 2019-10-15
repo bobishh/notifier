@@ -7,10 +7,10 @@ RSpec.describe Message, type: :model do
 
   subject { described_class.create(message_template: message_template, user: user) }
 
-  describe "#render_body" do
+  describe "#create" do
     context "methods on a user" do
-      it "returns a string with interpolated values" do
-        expect(subject.render_body).to eq("Hi, Test User!")
+      it "stores interpolated body in a field" do
+        expect(subject.body).to eq("Hi, Test User!")
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe Message, type: :model do
       let(:template_body) { "Hi %{user.name}, your balance is %{user.balance}" }
 
       it "returns a string with values interpolated from an association" do
-        expect(subject.render_body).to eq("Hi Test User, your balance is $100.00")
+        expect(subject.body).to eq("Hi Test User, your balance is $100.00")
       end
     end
   end

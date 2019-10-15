@@ -42,7 +42,7 @@ class MessageTemplatesController < ApplicationController
   end
 
   def destroy
-    @message_template.destroy
+    @message_template.archive
     respond_to do |format|
       format.html { redirect_to message_templates_url, notice: 'Message template was successfully destroyed.' }
       format.json { head :no_content }
