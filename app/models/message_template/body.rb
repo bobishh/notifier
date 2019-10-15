@@ -22,7 +22,8 @@ class MessageTemplate < ApplicationRecord
     def infer_data(attribute, user)
       (attribute.split(".") - ["user"]).reduce(user) do |acc, method|
         acc = acc.public_send(method)
-        acc
+      rescue NoMethodError
+        "Fallback value"
       end
     end
   end

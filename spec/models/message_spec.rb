@@ -15,10 +15,14 @@ RSpec.describe Message, type: :model do
     end
 
     context "methods on user's association" do
-      let(:template_body) { "Hi %{user.name}, your balance is %{user.balance}" }
+      before do
+        Account.create user: user, balance: 1000.00, provider: :stripe
+      end
+
+      let(:template_body) { "Hi %{user.name}, you're using %{user.account.provider} and your account balance is $%{user.account.balance}" }
 
       it "returns a string with values interpolated from an association" do
-        expect(subject.body).to eq("Hi Test User, your balance is $100.00")
+        expect(subject.body).to eq("Hi Test User, you're using stripe and your account balance is $1000.0")
       end
     end
   end

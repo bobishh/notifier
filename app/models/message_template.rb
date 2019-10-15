@@ -6,8 +6,8 @@ class MessageTemplate < ApplicationRecord
 
   class << self
     def allowed_for_interpolation
-      @allowed_for_interpolation ||= User.attribute_names
-        .map { |attr| "user.#{attr}" }
+      @allowed_for_interpolation ||= User.attribute_names.map { |attr| "user.#{attr}" }.concat(
+        Account.attribute_names.map { |attr| "user.account.#{attr}" })
     end
   end
 
