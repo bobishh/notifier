@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        message:
+          attributes:
+            message_template:
+              not_applicable: you can't use selected message template with this user
   hello: "Hello world"

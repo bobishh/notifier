@@ -2,7 +2,7 @@ class MessageTemplatesController < ApplicationController
   before_action :set_message_template, only: [:show, :edit, :update, :destroy]
 
   def index
-    @message_templates = MessageTemplate.all
+    @message_templates = MessageTemplate.active
   end
 
   def show
